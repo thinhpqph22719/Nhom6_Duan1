@@ -1,4 +1,4 @@
-package Repositories;
+package controller;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import models.Menu;
+import models.DanhMuc;
 import views.BanHangJPanel;
 import views.DoiMatKhauJPanel;
 import views.HoaDonJPanel;
@@ -17,35 +17,34 @@ import views.NhanVienJPanel;
 import views.SanPhamJPanel;
 import views.ThongKeJPanel;
 
-public class ChuyenManHinhRepository {
+public class ChuyenManHinhController {
 
-    private String kindSelected;
-    private JPanel jpnView;
-    private List<Menu> listMenu = null;
+    private String kindSelected = "";
+    private JPanel root;
+    private List<DanhMuc> listItem = null;
 
-    public ChuyenManHinhRepository(JPanel jpnView) {
-        this.jpnView = jpnView;
+    public ChuyenManHinhController(JPanel jpnRoot) {
+        this.root = jpnRoot;
     }
 
     public void setDashboard(JPanel jpnItem, JLabel lblItem) {
         kindSelected = "SanPham";
         jpnItem.setBackground(new Color(125, 229, 237));
         lblItem.setBackground(new Color(125, 229, 237));
-        JPanel node = new SanPhamJPanel();
-        jpnView.removeAll();
-        jpnView.setLayout(new BorderLayout());
-        jpnView.add(node);
-        jpnView.validate();
-        jpnView.repaint();
+        root.removeAll();
+        root.setLayout(new BorderLayout());
+        root.add(new SanPhamJPanel());
+        root.validate();
+        root.repaint();
 
     }
 
 //Hàm xử lý sự kiện khi nhấn vào Label bao gồm sự kiện nhấn chuột,
     // chuyển chuột vào và ra khỏi Label sẽ thay đổi màu nền của Panel.
-    public void setEvent(List<Menu> listMenu) {
-        this.listMenu = listMenu;
-        for (Menu item : listMenu) {
-            item.getJpn().addMouseListener(new LabelEvent(item.getKind(), item.getJpn(), item.getLbl()));
+    public void setEvent(List<DanhMuc> listItem) {
+        this.listItem = listItem;
+        for (DanhMuc item : listItem) {
+            item.getLbl().addMouseListener(new LabelEvent(item.getKind(), item.getJpn(), item.getLbl()));
         }
     }
 
@@ -96,11 +95,11 @@ public class ChuyenManHinhRepository {
                     node = new SanPhamJPanel();
                     break;
             }
-            jpnView.removeAll();
-            jpnView.setLayout(new BorderLayout());
-            jpnView.add(node);
-            jpnView.validate();
-            jpnView.repaint();
+            root.removeAll();
+            root.setLayout(new BorderLayout());
+            root.add(node);
+            root.validate();
+            root.repaint();
             setChangeBackground(kind);
         }
 
@@ -113,8 +112,6 @@ public class ChuyenManHinhRepository {
 
         @Override  //Được triệu hồi khi một nút chuột đã được nhả ra trên một thành phần.
         public void mouseReleased(MouseEvent e) {
-            jpnItem.setBackground(new Color(153, 204, 255));
-            lblItem.setBackground(new Color(153, 204, 255));
         }
 
         @Override  //Được triệu hồi khi chuột nhập vào một thành phần.
@@ -132,13 +129,13 @@ public class ChuyenManHinhRepository {
         }
 
         private void setChangeBackground(String kind) {
-            for (Menu menu : listMenu) {
-                if (menu.getKind().equalsIgnoreCase(kind)) {
-                    jpnItem.setBackground(new Color(125, 229, 237));
-                    lblItem.setBackground(new Color(125, 229, 237));
+            for (DanhMuc item : listItem) {
+                if (item.getKind().equalsIgnoreCase(kind)) {
+                    item.getJpn().setBackground(new Color(125, 229, 237));
+                    item.getLbl().setBackground(new Color(125, 229, 237));
                 } else {
-                    jpnItem.setBackground(new Color(153, 204, 255));
-                    lblItem.setBackground(new Color(153, 204, 255));
+                    item.getJpn().setBackground(new Color(153, 204, 255));
+                    item.getLbl().setBackground(new Color(153, 204, 255));
                 }
             }
         }

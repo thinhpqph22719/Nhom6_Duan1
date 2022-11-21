@@ -5,15 +5,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class Menu {
+public class DanhMuc {
     private String kind;
     private JPanel jpn;
     private JLabel lbl;
 
-    public Menu() {
+    public DanhMuc() {
     }
 
-    public Menu(String kind, JPanel jpn, JLabel lbl) {
+    public DanhMuc(String kind, JPanel jpn, JLabel lbl) {
         this.kind = kind;
         this.jpn = jpn;
         this.lbl = lbl;

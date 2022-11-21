@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package views;
 
-/**
- *
- * @author Lenovo
- */
+
 public class DangNhapJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form DangNhapJPanel
-     */
+   
     public DangNhapJPanel() {
         initComponents();
     }

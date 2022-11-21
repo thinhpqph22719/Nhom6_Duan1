@@ -1,9 +1,9 @@
 package views;
 
-import Repositories.ChuyenManHinhRepository;
 import java.util.ArrayList;
 import java.util.List;
-import models.Menu;
+import models.DanhMuc;
+import controller.ChuyenManHinhController;
 
 public class TrangChuJFrame extends javax.swing.JFrame {
 
@@ -11,20 +11,20 @@ public class TrangChuJFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("QuanLySanPham");
-        List<Menu> listMenu = new ArrayList<>();
-        listMenu.add(new Menu("SanPham", jpnSanPham, lblSanPham));
-        listMenu.add(new Menu("BanHang", jpnBanHang, lblBanHang));
-        listMenu.add(new Menu("HoaDon", jpnHoaDon, lblHoaDon));
-        listMenu.add(new Menu("NhanVien", jpnNhanVien, lblNhanVien));
-        listMenu.add(new Menu("KhuyenMai", jpnKhuyenMai, lblKhuyenMai));
-        listMenu.add(new Menu("KhachHang", jpnKhachHang, lblKhachHang));
-        listMenu.add(new Menu("DoiMatKhau", jpnDMK, lblDMK));
-        listMenu.add(new Menu("ThongKe", jpnThongKe, lblThongKe));
-        listMenu.add(new Menu("DangXuat", jpnDangXuat, lblDangXuat));
 
-        ChuyenManHinhRepository chuyenManHinhRepository = new ChuyenManHinhRepository(jpnView);
-        chuyenManHinhRepository.setDashboard(jpnSanPham, lblSanPham);
-        chuyenManHinhRepository.setEvent(listMenu);
+        ChuyenManHinhController chuyenManHinhService = new ChuyenManHinhController(jpnView);
+        chuyenManHinhService.setDashboard(jpnSanPham, lblSanPham);
+        List<DanhMuc> listMenu = new ArrayList<>();
+        listMenu.add(new DanhMuc("SanPham", jpnSanPham, lblSanPham));
+        listMenu.add(new DanhMuc("BanHang", jpnBanHang, lblBanHang));
+        listMenu.add(new DanhMuc("HoaDon", jpnHoaDon, lblHoaDon));
+        listMenu.add(new DanhMuc("NhanVien", jpnNhanVien, lblNhanVien));
+        listMenu.add(new DanhMuc("KhuyenMai", jpnKhuyenMai, lblKhuyenMai));
+        listMenu.add(new DanhMuc("KhachHang", jpnKhachHang, lblKhachHang));
+        listMenu.add(new DanhMuc("DoiMatKhau", jpnDMK, lblDMK));
+        listMenu.add(new DanhMuc("ThongKe", jpnThongKe, lblThongKe));
+        listMenu.add(new DanhMuc("DangXuat", jpnDangXuat, lblDangXuat));
+        chuyenManHinhService.setEvent(listMenu);
     }
 
     @SuppressWarnings("unchecked")

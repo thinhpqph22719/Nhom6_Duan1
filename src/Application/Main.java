@@ -1,5 +1,5 @@
 
-package Application;
+package application;
 
 import views.TrangChuJFrame;
 

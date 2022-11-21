@@ -2,11 +2,11 @@ package utilities;
 
 import java.sql.*;
 
-public class XJdbc {
+public class DBConnect {
 
     static String user = "sa";
     static String pass = "12345678";
-    static String myURL = "jdbc:sqlserver://localhost:1433;databaseName=DuAnMau";
+    static String myURL = "jdbc:sqlserver://localhost:1433;databaseName=DuAn1";
 
     static {
         try {
@@ -28,13 +28,13 @@ public class XJdbc {
     }
 
     public static ResultSet Query(String sql, Object... args) throws SQLException {
-        PreparedStatement ps = XJdbc.getStmt(sql, args);
+        PreparedStatement ps = DBConnect.getStmt(sql, args);
         return ps.executeQuery();
     }
 
     public static int Update(String sql, Object... args) throws SQLException {
         try {
-            PreparedStatement ps = XJdbc.getStmt(sql, args);
+            PreparedStatement ps = DBConnect.getStmt(sql, args);
             try {
                 return ps.executeUpdate();
             } finally {
@@ -43,7 +43,6 @@ public class XJdbc {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 }
 
